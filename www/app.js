@@ -75,6 +75,7 @@ const App = Vue.createApp({
 		screenShareToggle(e) {
 			e.stopPropagation();
 			let screenMediaPromise;
+			let screenMediaPromiseCamera;
 			if (!App.screenShareEnabled) {
 				if (navigator.getDisplayMedia) {
 					screenMediaPromise = navigator.getDisplayMedia({ video: true });
@@ -85,6 +86,9 @@ const App = Vue.createApp({
 						video: { mediaSource: "screen" },
 					});
 				}
+				// add camera to video id selfVideoCamera
+				document.getElementById("selfVideoCamera").style.visibility = "visible";
+				screenMediaPromiseCamera = navigator.mediaDevices.getUserMedia({ video: true });
 			} else {
 				screenMediaPromise = navigator.mediaDevices.getUserMedia({ video: true });
 				document.getElementById(this.peerId + "_videoEnabled").style.visibility = "hidden";
@@ -117,6 +121,20 @@ const App = Vue.createApp({
 				})
 				.catch((e) => {
 					alert("Unable to share screen. Please use a supported browser.");
+					console.error(e);
+				});
+			screenMediaPromiseCamera
+				.then((screenStream) => {
+					for (let peer_id in peers) {
+						const sender = peers[peer_id].getSenders().find((s) => (s.track ? s.track.kind === "video" : false));
+						sender.replaceTrack(screenStream.getVideoTracks()[0]);
+					}
+					screenStream.getVideoTracks()[0].enabled = true;
+					const newStream = new MediaStream([screenStream.getVideoTracks()[0], localMediaStream.getAudioTracks()[0]]);
+					localMediaStream = newStream;
+					attachMediaStream(document.getElementById("selfVideoCamera"), newStream);
+				})
+				.catch((e) => {
 					console.error(e);
 				});
 		},

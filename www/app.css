@@ -81,7 +81,7 @@ input {
 	box-sizing: border-box;
 	padding: 0.5rem;
 }
-#videos .video video {
+#videos .video video:not(#selfVideoCamera) {
 	width: 100%;
 	height: 100%;
 	display: block;
@@ -459,4 +459,14 @@ input {
 		width: 50vw;
 		height: 33.3vh;
 	}
+}
+
+
+#selfVideoCamera {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20%;
+	height: 20%;
+	z-index: 100;
 }

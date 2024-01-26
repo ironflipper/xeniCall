@@ -287,6 +287,20 @@ const getVideoElement = (peerId, isLocal) => {
 		media.mediaGroup = "remotevideo";
 	}
 
+	const media2 = document.createElement("video");
+	media2.setAttribute("playsinline", true);
+	media2.autoplay = true;
+	media2.controls = false;
+	if (isLocal) {
+		media2.setAttribute("id", "selfVideoCamera");
+		media2.className = "mirror";
+		media2.muted = true;
+		media2.volume = 0;
+	} else {
+		media2.mediaGroup = "remotevideo";
+	}
+
+
 	const audioEnabled = document.createElement("i");
 	audioEnabled.setAttribute("id", peerId + "_audioEnabled");
 	audioEnabled.className = "audioEnabled icon-mic";
@@ -320,6 +334,7 @@ const getVideoElement = (peerId, isLocal) => {
 
 	videoWrap.setAttribute("id", peerId);
 	videoWrap.appendChild(media);
+	media.appendChild(media2);
 	videoWrap.appendChild(audioEnabled);
 	videoWrap.appendChild(peerNameEle);
 	videoWrap.appendChild(fullScreenBtn);
