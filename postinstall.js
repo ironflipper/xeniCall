@@ -18,4 +18,8 @@ if (process.env.NODE_ENV === "production" && process.env.ANALYTICS_SCRIPT) {
 	const legalFileContents = fs.readFileSync(path.join(__dirname, "www/legal.html")).toString();
 	const newLegalFileContents = legalFileContents.replace("<!-- ANALYTICS_SCRIPT -->", scriptTag);
 	fs.writeFileSync(path.join(__dirname, "www/legal.html"), newLegalFileContents);
+
+	const contactFileContents = fs.readFileSync(path.join(__dirname, "www/contact.html")).toString();
+	const newContactFileContents = contactFileContents.replace("<!-- ANALYTICS_SCRIPT -->", scriptTag);
+	fs.writeFileSync(path.join(__dirname, "www/contact.html"), newContactFileContents);
 }
