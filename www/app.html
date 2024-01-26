@@ -37,12 +37,6 @@
 	</head>
 
 	<body>
-		<header style="background-color: #e74c3c; color: white; padding: 0.5rem">
-			Talk (tlk.li) will be discontinued from December 20, 2023. If needed, you can spin up your own server using our
-			open-source code. The source code will continue to be available under the MIT license @
-			<a href="https://github.com/vasanthv/talk" target="_blank">https://github.com/vasanthv/talk</a>. I am deeply sorry
-			for any inconvenience caused.
-		</header>
 		<section id="blanket"></section>
 		<section id="videos"></section>
 
@@ -70,24 +64,6 @@
 						<button v-on:click="initiateCall">Proceed</button>
 					</div>
 				</div>
-
-				<div id="callFeedbackWrap" v-if="callEnded">
-					<div id="callFeedback">
-						<div class="bold">Your call has been disconnected. You can now close this window.</div>
-						<br />
-
-						<div id="feedbackWrap">
-							<div class="question italic">How was the quality of call?</div>
-							<div class="thankYou bold">Thank you for your feedback</div>
-							<div id="feedbackButtons">
-								<button data-cabin-event="call-quality-nah" v-on:click="onCallFeedback">😟<br />Nah!</button>
-								<button data-cabin-event="call-quality-meh" v-on:click="onCallFeedback">😐<br />Meh!</button>
-								<button data-cabin-event="call-quality-yay" v-on:click="onCallFeedback">😀<br />Yay!</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
 				<div id="chatWrap" v-if="showChat">
 					<div id="chats" ref="chatContainer">
 						<div class="chat" v-for="(chat, i) in chats" v-bind:key="i">

@@ -287,19 +287,14 @@ const App = Vue.createApp({
 		setStyle(key, value) {
 			document.documentElement.style.setProperty(key, value);
 		},
-		onCallFeedback(e) {
-			try {
-				if (cabin) {
-					cabin.event(e.target.getAttribute("data-cabin-event"));
-				}
-			} catch (e) {}
-		},
 		exit() {
 			signalingSocket.close();
 			for (let peer_id in peers) {
 				peers[peer_id].close();
 			}
 			this.callEnded = true;
+			// send user to homepage
+			window.location.href = "/";
 		},
 	},
 }).mount("#app");
