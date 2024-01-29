@@ -334,7 +334,7 @@ const getVideoElement = (peerId, isLocal) => {
 
 	videoWrap.setAttribute("id", peerId);
 	videoWrap.appendChild(media);
-	media.appendChild(media2);
+	videoWrap.appendChild(media2);
 	videoWrap.appendChild(audioEnabled);
 	videoWrap.appendChild(peerNameEle);
 	videoWrap.appendChild(fullScreenBtn);

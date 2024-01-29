@@ -92,6 +92,7 @@ const App = Vue.createApp({
 			} else {
 				screenMediaPromise = navigator.mediaDevices.getUserMedia({ video: true });
 				document.getElementById(this.peerId + "_videoEnabled").style.visibility = "hidden";
+				document.getElementById("selfVideoCamera").style.visibility = "hidden";
 			}
 			screenMediaPromise
 				.then((screenStream) => {
