@@ -294,6 +294,7 @@ const getVideoElement = (peerId, isLocal) => {
 	if (isLocal) {
 		media2.setAttribute("id", "selfVideoCamera");
 		media2.className = "mirror";
+		media2.setAttribute("style", "margin-top: 10px; margin-right: 10px; border-radius: 10px;");
 		media2.muted = true;
 		media2.volume = 0;
 	} else {

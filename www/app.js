@@ -87,7 +87,6 @@ const App = Vue.createApp({
 					});
 				}
 				// add camera to video id selfVideoCamera
-				document.getElementById("selfVideoCamera").style.visibility = "visible";
 				screenMediaPromiseCamera = navigator.mediaDevices.getUserMedia({ video: true });
 			} else {
 				screenMediaPromise = navigator.mediaDevices.getUserMedia({ video: true });
@@ -100,6 +99,7 @@ const App = Vue.createApp({
 
 					this.videoEnabled = true;
 					this.updateUserData("videoEnabled", this.videoEnabled);
+					document.getElementById("selfVideoCamera").style.visibility = "visible";
 
 					for (let peer_id in peers) {
 						const sender = peers[peer_id].getSenders().find((s) => (s.track ? s.track.kind === "video" : false));
@@ -149,6 +149,7 @@ const App = Vue.createApp({
 					break;
 				case "videoEnabled":
 					document.getElementById(this.peerId + "_videoEnabled").style.visibility = value ? "hidden" : "visible";
+					document.getElementById("selfVideoCamera").style.visibility = value ? "visible" : "hidden";
 					break;
 				case "peerName":
 					document.getElementById(this.peerId + "_videoPeerName").innerHTML = value + " (you)";
